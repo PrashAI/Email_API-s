@@ -1,0 +1,25 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: prash1619
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: prash1619
+service: email-sender-api
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+functions:
+  sendEmail:
+    handler: handler.sendEmail
+    events:
+      - http:
+          path: send-email
+          method: post
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 3000
